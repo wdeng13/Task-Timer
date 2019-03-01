@@ -26,38 +26,30 @@ export class ClockComponent implements OnInit {
     let minPosition = (this.min * 360 / 60) + (this.sec * (360 / 60) / 60);
     let secPosition = this.sec * 360 / 60;
 
+    const CLOCK_OPTIONS = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    };
+
+    const DATE_OPTIONS = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+    };
+
     setInterval(() => {
-      this.curr_time = this.getCurrentTime();
-      this.curr_date = this.getCurrentDate();
+      this.curr_time = new Date().toLocaleTimeString('us-EN', CLOCK_OPTIONS);
+      this.curr_date = new Date().toLocaleDateString('us-EN', DATE_OPTIONS);
 
       hrPosition = hrPosition + (3 / 360);
       minPosition = minPosition + (6 / 60);
       secPosition = secPosition + 6;
 
-      this.HOURHAND.nativeElement.style.transform = 'rotate(' + hrPosition + 'deg)';
-      this.MINUTEHAND.nativeElement.style.transform = 'rotate(' + minPosition + 'deg)';
-      this.SECONDHAND.nativeElement.style.transform = 'rotate(' + secPosition + 'deg)';
+      // this.HOURHAND.nativeElement.style.transform = 'rotate(' + hrPosition + 'deg)';
+      // this.MINUTEHAND.nativeElement.style.transform = 'rotate(' + minPosition + 'deg)';
+      // this.SECONDHAND.nativeElement.style.transform = 'rotate(' + secPosition + 'deg)';
     }, 1000);
-  }
-
-  getCurrentTime() {
-    const date = new Date();
-    return this.formatDateTime(date.getHours())
-      + ':' + this.formatDateTime(date.getMinutes())
-      + ':' + this.formatDateTime(date.getSeconds());
-  }
-
-  getCurrentDate() {
-    const date = new Date();
-    return this.formatDateTime(date.getMonth() + 1)
-      + '/' + this.formatDateTime(date.getDate())
-      + '/' + this.formatDateTime(date.getFullYear());
-  }
-
-  formatDateTime(num: Number) {
-    if (num < 10) {
-      return '0' + num;
-    }
-    return String(num);
   }
 }

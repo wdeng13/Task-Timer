@@ -1,1 +1,19 @@
-<app-clock></app-clock>
+<div class="container">
+    <div id="clock">
+        <app-clock></app-clock>
+    </div>
+    <form class="text-center">
+        <div class="form-group row">
+            <label class="col-md-1 offset-md-3 col-form-label">Task</label>
+            <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="Task Name">
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Enter</button>
+            </div>
+        </div>
+    </form>
+    <div id="table">
+        <app-timer-table></app-timer-table>
+    </div>
+</div>
