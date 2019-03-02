@@ -1,19 +1,16 @@
-<div class="container">
-    <div id="clock">
-        <app-clock></app-clock>
+<div id="wrapper">
+    <div class="text-center" id="intro">
+        <span id="title">Task Timer</span>
+        <p id="description">This task timer allows someone to time their task.<br>Try enter a task below!</p>
     </div>
-    <form class="text-center">
-        <div class="form-group row">
-            <label class="col-md-1 offset-md-3 col-form-label">Task</label>
-            <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="Task Name">
-            </div>
-            <div class="col-md-1">
-                <button type="submit" class="btn btn-primary">Enter</button>
-            </div>
-        </div>
-    </form>
-    <div id="table">
-        <app-timer-table></app-timer-table>
+    <app-clock></app-clock>
+    <div class="text-center">
+        <mat-form-field id="taskInput">
+            <input matInput placeholder="Enter task name to start timer...">
+        </mat-form-field>
+        <button mat-raised-button color="primary" id="enterBtn">Enter</button>
     </div>
 </div>
+<!-- <div id="table">
+    <app-timer-table></app-timer-table>
+</div> -->

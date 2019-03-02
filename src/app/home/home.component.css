@@ -1,0 +1,24 @@
+#wrapper {
+    background: url(../../assets/apple-keyboard-ballpen-black-and-white-934062.jpg) no-repeat center center fixed;
+    background-size: cover;
+    min-height: calc(100vh - 56px);
+    font-family: serif;
+}
+
+#taskInput {
+    width: 500px;
+}
+
+#enterBtn {
+    margin-left: 5px;
+}
+
+#title {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#description {
+    font-size: 24px;
+    font-style: italic;
+}

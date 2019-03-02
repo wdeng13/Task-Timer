@@ -5,7 +5,8 @@ import {
     MatButtonModule,
     MatTooltipModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule
 } from '@angular/material';
 
 
@@ -16,7 +17,8 @@ import {
         MatButtonModule,
         MatTooltipModule,
         MatTabsModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatInputModule
     ],
     exports: [
         MatToolbarModule,
@@ -24,7 +26,8 @@ import {
         MatButtonModule,
         MatTooltipModule,
         MatTabsModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatInputModule
     ]
 })
 export class MaterialModule { }
