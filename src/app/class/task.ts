@@ -30,7 +30,7 @@ export class Task {
     }
 
     private calDuration(st: Date, et: Date) {
-        return et.getTime() - st.getTime();
+        return et.getTime() - st.getTime() - 1;
     }
 
     public getDateString() {
@@ -42,11 +42,20 @@ export class Task {
     }
 
     public getEndTimeStrintg() {
-        return this.endTime.toLocaleTimeString('us-EN', this.CLOCK_OPTIONS);
+        if (this.endTime) {
+            return this.endTime.toLocaleTimeString('us-EN', this.CLOCK_OPTIONS);
+        } else {
+            return new Date().toLocaleTimeString('us-EN', this.CLOCK_OPTIONS);
+        }
+
     }
 
     public getDuration() {
-        this.duration = this.calDuration(this.startTime, new Date());
+        if (this.endTime) {
+            this.duration = this.calDuration(this.startTime, this.endTime);
+        } else {
+            this.duration = this.calDuration(this.startTime, new Date());
+        }
         return new Date(this.duration).toISOString().substr(11, 8);
     }
 }

@@ -22,3 +22,7 @@
     font-size: 24px;
     font-style: italic;
 }
+
+app-timer-table {
+    margin: 0 50px;
+}

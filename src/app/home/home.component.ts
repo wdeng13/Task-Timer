@@ -8,18 +8,32 @@ import { Task } from '../class/task';
 })
 export class HomeComponent implements OnInit {
 
+  public taskName: string;
+  public taskList: Task[] = [];
+
   constructor() { }
 
   ngOnInit() {
-    const task1 = new Task('task1');
-    setTimeout(function () {
-      task1.setEndTime();
-      console.log(task1);
-      console.log(task1.getDateString());
-      console.log(task1.getStartTimeString());
-      console.log(task1.getEndTimeStrintg());
-      console.log(task1.getDuration());
-    }, 5000);
+
   }
 
+  updateTask(tName: string) {
+    let task: Task;
+    if (this.taskList) {
+      task = this.taskList.find(tk => tk.name === tName);
+      if (task) {
+        task.setEndTime();
+      } else {
+        task = new Task(tName);
+        this.taskList.push(task);
+      }
+    } else {
+      task = new Task(tName);
+      this.taskList.push(task);
+    }
+    console.log(task);
+    console.log(this.taskList);
+    this.taskName = '';
+    window.location.href = '#table';
+  }
 }

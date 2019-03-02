@@ -6,11 +6,12 @@
     <app-clock></app-clock>
     <div class="text-center">
         <mat-form-field id="taskInput">
-            <input matInput placeholder="Enter task name to start timer...">
+            <input [(ngModel)]="taskName" name="taskName" (keyup.enter)="updateTask(taskName)" autocomplete="off"
+                matInput placeholder="Enter task name to start timer...">
         </mat-form-field>
-        <button mat-raised-button color="primary" id="enterBtn">Enter</button>
+        <button mat-raised-button color="primary" id="enterBtn" (click)="updateTask(taskName)">Enter</button>
     </div>
 </div>
-<!-- <div id="table">
-    <app-timer-table></app-timer-table>
-</div> -->
+<div id="table">
+    <app-timer-table *ngIf="taskList.length > 1" [taskList]="taskList"></app-timer-table>
+</div>
