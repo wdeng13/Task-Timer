@@ -29,7 +29,7 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 export class TimerTableComponent implements OnInit {
   public taskList: Task[];
 
-  displayedColumns: string[] = ['name', 'startTime', 'endTime', 'duration'];
+  displayedColumns: string[] = ['name', 'startTime', 'endTime', 'duration', 'btn'];
   dataSource: MatTableDataSource<Task>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

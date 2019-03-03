@@ -6,28 +6,37 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
-      <!-- ID Column -->
+      <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
         <td mat-cell *matCellDef="let row"> {{row.name}} </td>
       </ng-container>
 
-      <!-- Progress Column -->
+      <!-- Start Time Column -->
       <ng-container matColumnDef="startTime">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Time </th>
         <td mat-cell *matCellDef="let row"> {{row.getStartTimeString()}} </td>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- End Time Column -->
       <ng-container matColumnDef="endTime">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> End Time </th>
-        <td mat-cell *matCellDef="let row"> {{row.getEndTimeStrintg() ? row.getEndTimeStrintg() : 'N/A'}} </td>
+        <td mat-cell *matCellDef="let row" [style.color]="!row.endTime ? 'red' : 'green'"> {{row.getEndTimeStrintg()}} </td>
       </ng-container>
 
-      <!-- Color Column -->
+      <!-- Duration Column -->
       <ng-container matColumnDef="duration">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
-        <td mat-cell *matCellDef="let row"> {{row.getDuration()}} </td>
+        <td mat-cell *matCellDef="let row" [style.color]="!row.endTime ? 'red' : 'green'"> {{row.getDuration()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="btn">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row">
+          <button *ngIf="!row.endTime" mat-raised-button color="primary" (click)="row.setEndTime()">
+            <mat-icon>timer</mat-icon>
+          </button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -35,6 +44,6 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
   </div>
 </div>

@@ -15,25 +15,31 @@ export class HomeComponent implements OnInit {
   constructor(private _taskService: TaskService) { }
 
   ngOnInit() {
-
+    this._taskService.currTaskList.subscribe(tl => {
+      if (tl) {
+        this.taskList = tl;
+      }
+    });
   }
 
   updateTask(tName: string) {
-    let task: Task;
-    if (this.taskList) {
-      task = this.taskList.find(tk => tk.name === tName);
-      if (task) {
-        task.setEndTime();
+    if (tName) {
+      let task: Task;
+      if (this.taskList) {
+        task = this.taskList.find(tk => tk.name === tName);
+        if (task) {
+          task.setEndTime();
+        } else {
+          task = new Task(tName);
+          this.taskList.push(task);
+        }
       } else {
         task = new Task(tName);
         this.taskList.push(task);
       }
-    } else {
-      task = new Task(tName);
-      this.taskList.push(task);
+      this.taskName = '';
+      // window.location.href = '#table';
+      this._taskService.updateTaskList(this.taskList);
     }
-    this.taskName = '';
-    window.location.href = '#table';
-    this._taskService.updateTaskList(this.taskList);
   }
 }

@@ -12,6 +12,9 @@
         <button mat-raised-button color="primary" id="enterBtn" (click)="updateTask(taskName)">Enter</button>
     </div>
 </div>
-<div id="table">
-    <app-timer-table *ngIf="taskList.length > 0"></app-timer-table>
+<div id="table" *ngIf="taskList.length > 0">
+    <div class="container">
+        <h1>Ongoing Tasks</h1>
+    </div>
+    <app-timer-table></app-timer-table>
 </div>

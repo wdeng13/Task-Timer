@@ -25,8 +25,10 @@ export class Task {
     }
 
     public setEndTime() {
-        this.endTime = new Date();
-        this.duration = this.calDuration(this.startTime, this.endTime);
+        if (!this.endTime) {
+            this.endTime = new Date();
+            this.duration = this.calDuration(this.startTime, this.endTime);
+        }
     }
 
     private calDuration(st: Date, et: Date) {
