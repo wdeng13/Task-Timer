@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../class/task';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   public taskName: string;
   public taskList: Task[] = [];
 
-  constructor() { }
+  constructor(private _taskService: TaskService) { }
 
   ngOnInit() {
 
@@ -31,9 +32,8 @@ export class HomeComponent implements OnInit {
       task = new Task(tName);
       this.taskList.push(task);
     }
-    console.log(task);
-    console.log(this.taskList);
     this.taskName = '';
     window.location.href = '#table';
+    this._taskService.updateTaskList(this.taskList);
   }
 }

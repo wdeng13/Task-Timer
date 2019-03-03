@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Task } from '../class/task';
+import { TaskService } from '../service/task.service';
 
 export interface UserData {
   id: string;
@@ -26,7 +27,7 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   styleUrls: ['./timer-table.component.css']
 })
 export class TimerTableComponent implements OnInit {
-  @Input() taskList: Task[];
+  public taskList: Task[];
 
   displayedColumns: string[] = ['name', 'startTime', 'endTime', 'duration'];
   dataSource: MatTableDataSource<Task>;
@@ -34,16 +35,19 @@ export class TimerTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private _taskService: TaskService) {
 
   }
 
   ngOnInit() {
-    console.log(this.taskList);
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.taskList);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this._taskService.currTaskList.subscribe(tl => {
+      this.taskList = tl;
+      console.log(this.taskList);
+      // Assign the data to the data source for the table to render
+      this.dataSource = new MatTableDataSource(this.taskList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(filterValue: string) {
