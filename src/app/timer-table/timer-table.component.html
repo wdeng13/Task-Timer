@@ -1,4 +1,5 @@
 <div class="container">
+  <h3>{{tableType}}</h3>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
@@ -33,7 +34,7 @@
       <ng-container matColumnDef="btn">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
-          <button *ngIf="!row.endTime" mat-raised-button color="primary" (click)="row.setEndTime()">
+          <button *ngIf="!row.endTime" mat-raised-button color="primary" (click)="endTaskTime(row.name)">
             <mat-icon>timer</mat-icon>
           </button>
         </td>

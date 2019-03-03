@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   public taskName: string;
   public taskList: Task[] = [];
+  public taskHistory: Task[] = [];
 
   constructor(private _taskService: TaskService) { }
 
@@ -18,6 +19,11 @@ export class HomeComponent implements OnInit {
     this._taskService.currTaskList.subscribe(tl => {
       if (tl) {
         this.taskList = tl;
+      }
+    });
+    this._taskService.currTaskHistory.subscribe(th => {
+      if (th) {
+        this.taskHistory = th;
       }
     });
   }
@@ -29,6 +35,9 @@ export class HomeComponent implements OnInit {
         task = this.taskList.find(tk => tk.name === tName);
         if (task) {
           task.setEndTime();
+          this.taskHistory.push(task);
+          this._taskService.updateTaskHistory(this.taskHistory);
+          this.taskList.splice(this.taskList.indexOf(task), 1);
         } else {
           task = new Task(tName);
           this.taskList.push(task);

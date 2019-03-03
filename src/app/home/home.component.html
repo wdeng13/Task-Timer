@@ -13,8 +13,5 @@
     </div>
 </div>
 <div id="table" *ngIf="taskList.length > 0">
-    <div class="container">
-        <h1>Ongoing Tasks</h1>
-    </div>
-    <app-timer-table></app-timer-table>
+    <app-timer-table [tableType]="'Ongoing Task'"></app-timer-table>
 </div>

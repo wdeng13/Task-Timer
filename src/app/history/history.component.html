@@ -1,3 +1,7 @@
-<p>
-  history works!
-</p>
+<div id="table" *ngIf="taskHistory.length > 0">
+    <app-timer-table [tableType]="'History'"></app-timer-table>
+</div>
+
+<div class="text-center" *ngIf="taskHistory.length === 0">
+    <h3>No Task History</h3>
+</div>
