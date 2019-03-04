@@ -43,6 +43,11 @@ export class TimerTableComponent implements OnInit {
         this.dataSource.sort = this.sort;
       });
     }
+    this._taskService.currTaskHistory.subscribe(tl => {
+      if (tl) {
+        this.taskHistory = tl;
+      }
+    });
   }
 
   applyFilter(filterValue: string) {

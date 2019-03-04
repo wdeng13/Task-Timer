@@ -32,7 +32,7 @@ export class Task {
     }
 
     private calDuration(st: Date, et: Date) {
-        return et.getTime() - st.getTime() - 1;
+        return et.getTime() - st.getTime();
     }
 
     public getDateString() {
@@ -58,6 +58,7 @@ export class Task {
         } else {
             this.duration = this.calDuration(this.startTime, new Date());
         }
+        console.log(new Date(this.duration));
         return new Date(this.duration).toISOString().substr(11, 8);
     }
 }
